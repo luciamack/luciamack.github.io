@@ -1,0 +1,1021 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <title>Lucia Mackenzie — Data Journalist</title>
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    body {
+      color: #222;
+      background: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    .container { max-width: 1140px; }
+
+    main {
+      padding-top: 3.5rem;
+      padding-bottom: 5rem;
+    }
+
+    section {
+      margin-bottom: 6.5rem;
+      scroll-margin-top: 5rem;
+    }
+
+    /* Navigation */
+    .navbar {
+      margin-bottom: 0;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid #e9e9e9;
+    }
+    .navbar-brand {
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+    .navbar-nav .nav-link { padding: .5rem .75rem; }
+
+    /* Intro */
+    .intro { margin-bottom: 5.5rem; }
+    .intro-content {
+      display: flex;
+      align-items: center;
+      gap: 3.5rem;
+    }
+    .intro-copy { flex: 1 1 auto; min-width: 0; }
+    .headshot {
+      flex: 0 0 230px;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #f1f1f1;
+      border: 1px solid #e1e1e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #777;
+      font-size: .9rem;
+    }
+    .headshot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .headshot-placeholder { padding: 1.5rem; }
+    .intro h1 {
+      margin-bottom: 1.25rem;
+      font-size: clamp(2.25rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+    .intro p {
+      max-width: 760px;
+      font-size: 1.1rem;
+      margin-bottom: .9rem;
+    }
+
+    /* Section headings */
+    .section-heading { margin-bottom: 2rem; }
+    .section-heading h2 {
+      margin-bottom: .5rem;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+    }
+    .section-heading p {
+      max-width: 760px;
+      margin-bottom: 0;
+      color: #666;
+      font-size: 1.03rem;
+    }
+
+    /* Carousels */
+    .portfolio-carousel { position: relative; }
+    .portfolio-window { overflow: hidden; margin: 0 3.25rem; }
+    .portfolio-track {
+      display: flex;
+      gap: 24px;
+      transition: transform .4s ease;
+      will-change: transform;
+      align-items: stretch;
+    }
+    .portfolio-item {
+      flex: 0 0 calc((100% - 48px) / 3);
+      min-width: 0;
+      display: flex;
+    }
+
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 3;
+      width: 44px;
+      height: 44px;
+      margin-top: -22px;
+      border: 1px solid #d8d8d8;
+      border-radius: 50%;
+      background: #fff;
+      color: #222;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      transition: background .2s ease, box-shadow .2s ease, opacity .2s ease;
+    }
+    .carousel-arrow:hover:not(:disabled) {
+      background: #f5f5f5;
+      box-shadow: 0 4px 12px rgba(0,0,0,.12);
+    }
+    .carousel-arrow:focus {
+      outline: 2px solid #555;
+      outline-offset: 2px;
+    }
+    .carousel-arrow:disabled { opacity: .3; cursor: default; }
+    .carousel-arrow.prev { left: 0; }
+    .carousel-arrow.next { right: 0; }
+
+    /* Cards */
+    .portfolio-card-link {
+      color: inherit;
+      text-decoration: none !important;
+      display: flex;
+      width: 100%;
+    }
+    .card {
+      width: 100%;
+      height: 100%;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06);
+      transition: transform .2s ease, box-shadow .2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .portfolio-card-link:hover .card {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 26px rgba(0,0,0,.11);
+    }
+    .portfolio-card-link:focus .card {
+      outline: 2px solid #555;
+      outline-offset: 2px;
+    }
+    .card-img-top {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      background: #f6f6f6;
+    }
+    .screen-recording-placeholder {
+      height: 220px;
+      background:
+        linear-gradient(135deg, rgba(74,28,87,.08), rgba(222,150,158,.12)),
+        #f5f5f5;
+      border-bottom: 1px solid #e5e5e5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      color: #5b5b5b;
+    }
+    .screen-recording-placeholder .recording-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid #d8d8d8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      padding-left: 3px;
+      color: #6a376f;
+      flex: 0 0 auto;
+    }
+    .screen-recording-placeholder strong {
+      display: block;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      margin-bottom: .15rem;
+    }
+    .screen-recording-placeholder span {
+      display: block;
+      font-size: .82rem;
+      color: #777;
+    }
+    .project-video {
+      display: block;
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      background: #111;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .card-body {
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-title {
+      margin-bottom: .7rem;
+      font-size: 1.16rem;
+      line-height: 1.25;
+      font-weight: 650;
+      letter-spacing: -.01em;
+    }
+    .card-text {
+      margin-bottom: 1rem;
+      color: #555;
+      font-size: .94rem;
+      line-height: 1.5;
+    }
+    .card-meta {
+      margin-top: auto;
+      padding-top: .85rem;
+      border-top: 1px solid #eee;
+    }
+    .card-meta + .card-meta {
+      margin-top: .75rem;
+    }
+    .meta-label {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      color: #888;
+      margin-bottom: .4rem;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+    }
+    .tag, .software-tag {
+      display: inline-block;
+      border-radius: 999px;
+      padding: .25rem .55rem;
+      font-size: .7rem;
+      line-height: 1.25;
+      border: 1px solid #dedede;
+    }
+    .tag {
+      background: #f7eef4;
+      border-color: #e8ccd9;
+      color: #63364f;
+    }
+    .software-tag {
+      background: #f6f6f6;
+      color: #666;
+    }
+
+    /* Footer */
+    .footer {
+      background: #f5f5f5;
+      padding: 4rem 0;
+    }
+    .footer .row > [class*="col-"] { margin-bottom: 1.5rem; }
+    .footer .row > [class*="col-"]:last-child { margin-bottom: 0; }
+    .footer p { margin-bottom: .5rem; }
+    .footer ul { padding-left: 1.1rem; margin-bottom: 0; }
+
+    /* Mobile / tablet */
+    @media (max-width: 991.98px) {
+      main { padding-top: 3rem; }
+      section { margin-bottom: 5.5rem; }
+      .intro { margin-bottom: 4.5rem; }
+      .navbar { padding-left: 1rem; padding-right: 1rem; }
+      .intro-content { gap: 2rem; }
+      .headshot { flex-basis: 190px; width: 190px; height: 190px; }
+      .portfolio-window { margin: 0 2.75rem; }
+      .portfolio-item { flex-basis: calc((100% - 24px) / 2); }
+      .card-img-top, .screen-recording-placeholder, .project-video { height: 205px; }
+    }
+
+    @media (max-width: 767.98px) {
+      .container { padding-left: 20px; padding-right: 20px; }
+      .navbar { padding: .75rem 20px; }
+      .navbar-brand { font-size: 1.05rem; }
+      main { padding-top: 2.5rem; padding-bottom: 3rem; }
+      .intro { margin-bottom: 3.5rem; }
+      .intro-content {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 1.75rem;
+      }
+      .headshot {
+        width: 150px;
+        height: 150px;
+        flex-basis: 150px;
+        align-self: center;
+      }
+      .intro h1 { margin-bottom: 1rem; }
+      .intro p { font-size: 1rem; }
+      section { margin-bottom: 4.5rem; scroll-margin-top: 4rem; }
+      .section-heading { margin-bottom: 1.5rem; }
+      .portfolio-window { margin: 0 2.5rem; }
+      .portfolio-track { gap: 16px; }
+      .portfolio-item { flex-basis: 100%; }
+      .carousel-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+        margin-top: -20px;
+      }
+      .card-img-top, .screen-recording-placeholder, .project-video { height: 210px; }
+      .card-body { padding: 1.25rem; }
+      .footer { padding: 3rem 0; }
+      .footer .row > [class*="col-"] { margin-bottom: 2rem; }
+    }
+
+    @media (max-width: 374.98px) {
+      .container { padding-left: 16px; padding-right: 16px; }
+      .navbar { padding-left: 16px; padding-right: 16px; }
+      .headshot { width: 130px; height: 130px; flex-basis: 130px; }
+      .portfolio-window { margin: 0 2.25rem; }
+      .card-img-top, .screen-recording-placeholder, .project-video { height: 180px; }
+    }
+  
+    /* Responsive portfolio collages - Note to self 16:9 are dimensions for any updates */
+    .portfolio-card img,
+    .portfolio-item img,
+    .portfolio-window img,
+    .portfolio-track img {
+      display: block;
+      width: 100%;
+      height: auto !important;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+    }
+
+
+    /* Compact text-only cards in Policy and Global Affairs sections
+       Image-led sections keep their original sizing and responsive carousel. */
+    #projects .portfolio-track { align-items: flex-start; }
+    #projects .portfolio-item:has(.card-text-only) { align-self: flex-start; height: auto; }
+    #projects .portfolio-item:has(.card-text-only) .portfolio-card-link { display: block; height: auto; }
+    #projects .card.card-text-only { height: auto; min-height: 0; }
+    #projects .card.card-text-only .card-body { flex: 0 1 auto; padding: 1rem; }
+    #projects .card.card-text-only .card-title { margin-bottom: .5rem; }
+    #projects .card.card-text-only .card-text { margin-bottom: .75rem; }
+
+    #policy .portfolio-track,
+    #global .portfolio-track {
+      align-items: flex-start;
+    }
+    #policy .portfolio-item,
+    #global .portfolio-item {
+      align-self: flex-start;
+      height: auto;
+    }
+    #policy .portfolio-card-link,
+    #global .portfolio-card-link {
+      display: block;
+      height: auto;
+    }
+    #policy .card.card-text-only,
+    #global .card.card-text-only {
+      height: auto;
+      min-height: 0;
+    }
+    #policy .card.card-text-only .card-body,
+    #global .card.card-text-only .card-body {
+      flex: 0 1 auto;
+      padding: 1rem;
+    }
+    #policy .card.card-text-only .card-title,
+    #global .card.card-text-only .card-title {
+      margin-bottom: .5rem;
+    }
+    #policy .card.card-text-only .card-text,
+    #global .card.card-text-only .card-text {
+      margin-bottom: .75rem;
+    }
+
+</style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">Lucia Mackenzie</a>
+      <button class="navbar-toggler" type="button"
+              data-toggle="collapse"
+              data-target="#portfolioNav"
+              aria-controls="portfolioNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="portfolioNav">
+        <div class="navbar-nav ml-auto">
+          <a class="nav-item nav-link" href="#election">Election coverage</a>
+          <a class="nav-item nav-link" href="#policy">Policy coverage</a>
+          <a class="nav-item nav-link" href="#global">Global affairs</a>
+          <a class="nav-item nav-link" href="#projects">Personal projects</a>
+          <a class="nav-item nav-link" href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <div class="intro">
+        <div class="intro-content">
+          <div class="intro-copy">
+            <h1>About me</h1>
+            <p>
+              My name is Lucia Mackenzie and I am a data journalist
+              based in POLITICO's Brussels newsroom.
+            </p>
+            <p>
+              Since moving to Belgium from my native Scotland, I have spent several
+              years reporting on election results and polling data, crafting data-driven
+              explainers of complex EU policies, and creating visually engaging stories about
+              anything and everything that interests me.
+            </p>
+            <p>
+              Here you can find some of the pieces I am most proud of.
+            </p>
+          </div>
+          <div class="headshot" aria-label="Headshot placeholder">
+            <img src="assets/headshot.jpg" alt="Lucia Mackenzie">
+          </div>
+        </div>
+      </div>
+
+      
+      <section id="election" class="portfolio-section">
+        <div class="section-heading">
+          <h2>Election coverage</h2>
+          <p>Reporting on elections made me fall in love with data journalism. I had the pleasure of reporting live on the last UK general election from London and have covered various other European elections since.
+            My election coverage is data-driven, with a focus on analysing public opinion in the run up to election day and the eventual vote results. I also enjoy producing clear visual explainers for voters covering useful information about the electoral system and how to register to vote.
+          </p>
+        </div>
+
+        <div class="portfolio-carousel" data-carousel>
+          <button class="carousel-arrow prev" type="button" aria-label="Previous election projects" disabled>&lsaquo;</button>
+          <div class="portfolio-window">
+            <div class="portfolio-track">
+              
+         <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/germany-italy-elections-federal-cdu-csu-olaf-scholz-spd-vote/" target="_blank" rel="noopener noreferrer">
+              <article class="card">
+                <img class="card-img-top" src="assets/8.png" alt="Chart collage for How Germany found itself holding an Italian election" loading="lazy">
+                <div class="card-body">
+                  <h3 class="card-title">How Germany found itself holding an Italian election</h3>
+                  <p class="card-text">A visual explainer using 35 years worth of election data to outline the key political parties competing in the German election on several maps.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Datawrapper</span><span class="software-tag">R</span><span class="software-tag">Python</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+              
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/scottish-national-party-united-kingdom-election-mrp-model-seats-data-polls/" target="_blank" rel="noopener noreferrer">
+              <article class="card">
+                <img class="card-img-top" src="assets/1.png" alt="Chart collage for The SNP could be the UK election’s biggest loser" loading="lazy">
+                <div class="card-body">
+                  <h3 class="card-title">The SNP could be the UK election’s biggest loser</h3>
+                  <p class="card-text">Analysis of Scottish voting intentions ahead of the UK general election and the likely impact on the Scottish National Party.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Infogram</span><span class="software-tag">QGIS</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/guide-june-2024-european-union-parliament-meps-poll-of-polls-election-9-charts/" target="_blank" rel="noopener noreferrer">
+              <article class="card">
+                <img class="card-img-top" src="assets/3.png" alt="Chart collage for Your guide to the 2024 European election in 9 charts" loading="lazy">
+                <div class="card-body">
+                  <h3 class="card-title">Your guide to the 2024 European election in 9 charts</h3>
+                  <p class="card-text">A visual explainer of the EU’s electoral system for voters to use ahead of the 2024 European elections.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Infogram</span><span class="software-tag">Adobe Illustrator</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/germany-election-friedrich-merz-dream-coalition-maps-historical-results-die-linke-fdp-sahra-wagenknecht-alliance-cdu/" target="_blank" rel="noopener noreferrer">
+              <article class="card">
+                <img class="card-img-top" src="assets/2.png" alt="Chart collage for Merz's coalition dream hinges on implosion of smaller rivals" loading="lazy">
+                <div class="card-body">
+                  <h3 class="card-title">Merz's coalition dream hinges on implosion of smaller rivals</h3>
+                  <p class="card-text">A collaborative piece visually analysing the impact of smaller parties on the CDU's chances of success in the 2025 German election.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">R</span><span class="software-tag">Datawrapper</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/germany-east-west-election-feb-23-elections-afd-party-cdu/" target="_blank" rel="noopener noreferrer">
+              <article class="card">
+                <img class="card-img-top" src="assets/5.png" alt="Chart collage for What Germany’s East-West divide means for the election" loading="lazy">
+                <div class="card-body">
+                  <h3 class="card-title">What Germany’s East-West divide means for the election</h3>
+                  <p class="card-text">In depth analysis of vote volatility and support for far-right and far-left parties in Germany's East and West, featuring several detailed interactive maps.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Datawrapper</span><span class="software-tag">HTML</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/red-wall-united-kingdom-general-election-poll-labour-conservatives-liberal-democrats/" target="_blank" rel="noopener noreferrer">
+              <article class="card">
+                <img class="card-img-top" src="assets/6.png" alt="Chart collage for Forget the Red Wall. These are the UK election battlegrounds to watch." loading="lazy">
+                <div class="card-body">
+                  <h3 class="card-title">Forget the Red Wall. These are the UK election battlegrounds to watch.</h3>
+                  <p class="card-text">Article using polling data to identify a shortlist of key battleground seats ahead of the UK general election, demonstrating that many of these were formerly Conservative strongholds.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Excel</span><span class="software-tag">Infogram</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/united-kingdom-general-election-maps-results-charts-seats-how-britain-voted/" target="_blank" rel="noopener noreferrer">
+              <article class="card">
+                <img class="card-img-top" src="assets/7.png" alt="Chart collage for How Britain voted: Charts and maps" loading="lazy">
+                <div class="card-body">
+                  <h3 class="card-title">How Britain voted: Charts and maps</h3>
+                  <p class="card-text">A post-mortem visual analysis of the results of the UK general election, produced while reporting live on election night itself.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Infogram</span><span class="software-tag">Python</span><span class="software-tag">R</span><span class="software-tag">QGIS</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/nigel-farage-effect-uk-election-reform-party-mrp-projection-yougov/" target="_blank" rel="noopener noreferrer">
+              <article class="card">
+                <img class="card-img-top" src="assets/4.png" alt="Chart collage for The Nigel Farage effect is real" loading="lazy">
+                <div class="card-body">
+                  <h3 class="card-title">The Nigel Farage effect is real</h3>
+                  <p class="card-text">A visual analysis outlining the impact of Nigel Farage entering the UK election race, produced within hours of the publication of key polling data.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Infogram</span><span class="software-tag">QGIS</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+            </div>
+          </div>
+          <button class="carousel-arrow next" type="button" aria-label="Next election projects">&rsaquo;</button>
+        </div>
+      </section>
+
+      
+      <section id="policy" class="portfolio-section">
+        <div class="section-heading">
+          <h2>Policy coverage</h2>
+          <p>As a policy reporter in Brussels I merged my data journalism skills with traditional reporting to write about key issues affecting the EU's agriculture and trade policies.
+            These stories ranged from data-driven explainers of the EU's budget, to live coverage of protests and hearings, and technical analysis of leaked policy documents.
+          </p>
+        </div>
+
+        <div class="portfolio-carousel" data-carousel>
+          <button class="carousel-arrow prev" type="button" aria-label="Previous policy projects" disabled>&lsaquo;</button>
+          <div class="portfolio-window">
+            <div class="portfolio-track">
+              
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/eu-budget-agriculture-farming-cap-tractor/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">Where the EU’s colossal farming budget actually goes</h3>
+                  <p class="card-text">A Q&amp;A style visual explainer covering how the EU spends its agriculture budget, published ahead of a significant restructuring of the Common Agricultural Policy.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Datawrapper</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/eu-drops-key-us-goods-from-tariff-retaliation-hit-list/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">Here are the winners and losers from EU’s retaliation plan against US tariffs</h3>
+                  <p class="card-text">Unique analysis of a leaked document related to trade negotiations showing which industries were likely to be the most impacted by retaliatory tariffs.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">R</span><span class="software-tag">Python</span><span class="software-tag">Datawrapper</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/eu-power-structure-ursula-von-der-leyen-team/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">Who works for whom in the new EU power structure</h3>
+                  <p class="card-text">An org-chart outlining which EU Commissioners have the most power in the new College, created rapidly on the day the Commissioners’ mandates were announced.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Infogram</span><span class="software-tag">Adobe Illustrator</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/meet-the-irish-farmers-on-a-mission-to-boost-the-eus-agricultural-budget/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">Rogue tractors complicate farm spending fight</h3>
+                  <p class="card-text">Written analysis of how rogue farmers protests challenge the mandate of traditionally powerful farmers unions and lobbyists, based on boots on the ground reporting.</p>
+                  
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/europe-premium-cheese-producers-caught-global-trade-crossfire-protectionism-geographical-indication/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">EU’s premium cheeses grate against free trade</h3>
+                  <p class="card-text">Visual story of how Europe’s niche cheese producers in the Italian alps found themselves caught in the crossfire of global trade wars, based on a reporting trip to Italy.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Datawrapper</span><span class="software-tag">Photography</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/eu-hopes-to-uncork-the-potential-of-indias-growing-wine-market/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">EU hopes to uncork the potential of India’s growing wine market</h3>
+                  <p class="card-text">Analysis of trade data showing the potential for EU wine exporters to expand their presence in India following the agreement of a trade deal.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Datawrapper</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/state-of-the-european-union-speech-ursula-von-der-leyen-data-charts/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">Von der Leyen’s State of the Union speech in 5 charts</h3>
+                  <p class="card-text">A visual summary of Ursula von der Leyen’s State of the Union speech using text analysis to compare the contents to those of previous years.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">R</span><span class="software-tag">Infogram</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/smoke-tear-gas-and-projectile-potatoes-farmers-vent-their-rage-at-brussels/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">A toppled Christmas tree, tear gas and projectile potatoes: Farmers vent rage at Brussels</h3>
+                  <p class="card-text">A breaking news story covering farmers protests in Brussels, based on my own photos, videos and interviews with protesters.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Photography</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/brussels-heads-for-a-fall-fight-over-limiting-subsidies-to-big-farms/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">Brussels heads for a fall fight over limiting subsidies to big farms</h3>
+                  <p class="card-text">Numeric analysis of how the European Commission’s plans to limit subsidies to large farms would impact different member states.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Datawrapper</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/wolf-war-europe-germany-ursula-von-der-leyen-data/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">A wolf war showdown is looming</h3>
+                  <p class="card-text">A visual article showing the EU’s growing wolf population as the European Commission considered downgrading the animal’s protection status.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">QGIS</span><span class="software-tag">Infogram</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+            </div>
+          </div>
+          <button class="carousel-arrow next" type="button" aria-label="Next policy projects">&rsaquo;</button>
+        </div>
+      </section>
+
+      
+      <section id="global" class="portfolio-section">
+        <div class="section-heading">
+          <h2>Global affairs</h2>
+          <p>I regularly apply my skills in data-driven research and visualisation to provide unique coverage of global issues. I often report on defense, conflict, and energy supply chains data lens, 
+            and find that making original maps significantly enhances coverage of these issues.</p>
+        </div>
+
+        <div class="portfolio-carousel" data-carousel>
+          <button class="carousel-arrow prev" type="button" aria-label="Previous global affairs projects" disabled>&lsaquo;</button>
+          <div class="portfolio-window">
+            <div class="portfolio-track">
+              
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/sweden-nato-membership-military-power/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">What Sweden brings to NATO</h3>
+                  <p class="card-text">A series of charts and illustration outlining Sweden’s military capabilities ahead of its inauguration as a member of NATO.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Infogram</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/russia-sabotage-undersea-cables-baltic-sea-europe-war/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">Europe’s new war with Russia: Deep sea sabotage</h3>
+                  <p class="card-text">A complex GIF showing key undersea infrastructure in Europe, produced as part of a collaboration with other journalists on a wider story about deep sea sabotage.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Adobe Illustrator</span><span class="software-tag">QGIS</span><span class="software-tag">Datawrapper</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/russian-gas-deal-europe-ukraine-pipeline-energy-market-lng/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">Most of Europe is fine without Russian gas</h3>
+                  <p class="card-text">A visual story chronicling the EU’s efforts to transition away from Russian gas following the invasion of Ukraine.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Datawrapper</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/ukraine-war-united-states-europe-replace-weapons-military-spending-donald-trump/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">Can Europe replace the US in Ukraine?</h3>
+                  <p class="card-text">An article outlining the various avenues through which Europe can support Ukraine following remarks by Donald Trump calling US support into question.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Datawrapper</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/syria-shattered-nation-bashar-al-assad-middle-east-war-civil-conflict-dictatorship-turkey-refugees/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">Syrians face return to a shattered nation</h3>
+                  <p class="card-text">A visual round up of data showing the severity of the damage done to Syria by years of conflict.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Datawrapper</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/united-nations-emissions-gap-global-warming-data-climate-change-report/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">World on track for catastrophic 3 degrees Celsius warming, UN warns</h3>
+                  <p class="card-text">Visual article based on a UN report warning of global warming.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Datawrapper</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/2024-by-the-numbers-victims-war-warming-planet-election-migration-europe/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">2024 by the numbers: From victims of war to a warming planet</h3>
+                  <p class="card-text">Annual collaboration with other data journalists to summarise the year using striking visuals.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">QGIS</span><span class="software-tag">Adobe Illustrator</span><span class="software-tag">Datawrapper</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/2023-data-figures-charts/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">2023: The year in figures and charts</h3>
+                  <p class="card-text">Annual collaboration with other data journalists to summarise the year using striking visuals.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">QGIS</span><span class="software-tag">Adobe Illustrator</span><span class="software-tag">Excel</span><span class="software-tag">Infogram</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+            </div>
+          </div>
+          <button class="carousel-arrow next" type="button" aria-label="Next global affairs projects">&rsaquo;</button>
+        </div>
+      </section>
+
+      
+      <section id="projects" class="portfolio-section">
+        <div class="section-heading">
+          <h2>Personal projects</h2>
+          <p>I enjoy using trying out new data analysis and visualisation techniques to write about a wide variety of topics in my free time. 
+            I recently completed the Columbia Graduate School of Journalism's data journalism summer course, the Lede Program, which gave me the opportunity to experiment
+            using a wide variety of software and data sources.
+          </p>
+        </div>
+
+        <div class="portfolio-carousel" data-carousel>
+          <button class="carousel-arrow prev" type="button" aria-label="Previous personal projects" disabled>&lsaquo;</button>
+          <div class="portfolio-window">
+            <div class="portfolio-track">
+              
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://luciamack.github.io/makerfield_byelection_scale_scrollystory/" target="_blank" rel="noopener noreferrer">
+              <article class="card">
+                
+          <video class="project-video" muted playsinline loop preload="metadata" aria-label="Screen recording: How a few thousand voters chose Britain's next Prime Minister">
+                  <source src="assets/vid_1.mp4" type="video/mp4">
+                  Your browser does not support embedded videos.
+                </video>
+                <div class="card-body">
+                  <h3 class="card-title">How a few thousand voters chose Britain's next Prime Minister</h3>
+                  <p class="card-text">A scrolly-telling story using simple grid graphics to illustrate how many Brits voted for Andy Burnham to become Prime Minister.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">Adobe Illustrator</span><span class="software-tag">HTML</span><span class="software-tag">Javascript</span><span class="software-tag">CSS</span><span class="software-tag">Scrollama</span><span class="software-tag">Github</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://luciamack.github.io/veggie_burger_ban_article/" target="_blank" rel="noopener noreferrer">
+              <article class="card">
+                
+          <video class="project-video" muted playsinline loop preload="metadata" aria-label="Screen recording: European lawmakers are losing their taste for veggie burgers">
+                  <source src="assets/veggie_burgers.mp4" type="video/mp4">
+                  Your browser does not support embedded videos.
+                </video>
+                <div class="card-body">
+                  <h3 class="card-title">European lawmakers are losing their taste for veggie burgers</h3>
+                  <p class="card-text">A scrolly-telling story comparing European Parliament amendments and vote data on attempts to ban veggie burgers.</p>
+                  <div class="card-meta"><div class="tags"><span class="software-tag">APIs</span><span class="software-tag">Python</span><span class="software-tag">Jupyter Notebooks</span><span class="software-tag">Datawrapper</span><span class="software-tag">Adobe Illustrator</span><span class="software-tag">HTML</span><span class="software-tag">Javascript</span><span class="software-tag">CSS</span><span class="software-tag">Scrollama</span><span class="software-tag">Github</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://luciamack.github.io/ai_classification_of_nyt_bestsellers/" target="_blank" rel="noopener noreferrer">
+              <article class="card">
+                
+          <video class="project-video" muted playsinline loop preload="metadata" aria-label="Screen recording: Have we reached peak romance?">
+                  <source src="assets/peak_romance_animation.mp4" type="video/mp4">
+                  Your browser does not support embedded videos.
+                </video>
+                <div class="card-body">
+                  <h3 class="card-title">Have we reached peak romance?</h3>
+                  <p class="card-text">A visual article using AI to classify thousands of New York Times best sellers based on their genre to discover trends in the popularity of romance novels.</p>
+                  
+                  <div class="card-meta"><div class="tags"><span class="software-tag">APIs</span><span class="software-tag">Python</span><span class="software-tag">Jupyter Notebooks</span><span class="software-tag">SVG Animation</span><span class="software-tag">HTML</span><span class="software-tag">Javascript</span><span class="software-tag">CSS</span><span class="software-tag">Datawrapper</span><span class="software-tag">Github</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a class="portfolio-card-link" href="https://www.politico.eu/article/eurovision-european-union-election-data-sweden-italy-germany-united-kingdom/" target="_blank" rel="noopener noreferrer">
+              <article class="card card-text-only">
+                <div class="card-body">
+                  <h3 class="card-title">Eurovision: Who would run the EU if decided by the song contest?</h3>
+                  <p class="card-text">A humorous story analysing trends in Eurovision Song Contest results.</p>
+                  
+                  <div class="card-meta"><div class="tags"><span class="software-tag">R</span><span class="software-tag">Python</span><span class="software-tag">Excel</span><span class="software-tag">Infogram</span></div></div>
+                </div>
+              </article>
+            </a>
+          </div>
+            </div>
+          </div>
+          <button class="carousel-arrow next" type="button" aria-label="Next personal projects">&rsaquo;</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer text-muted" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <p><strong>Contact information</strong></p>
+          <p>Send tips to lmackenzie@politico.eu.</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <p><strong>Socials</strong></p>
+          <p>You can find me on
+          <a href="https://www.linkedin.com/in/lucia-mackenzie-8b8858199/">LinkedIn</a>,
+          <a href="https://blueskydirectory.com/profiles/luciacmackenzie.bsky.social">Bluesky</a> and
+          <a href="https://x.com/LuciaCMackenzie">X.</a></p>
+        </div>
+        <div class="col-12 col-md-4">
+          <p><strong>Find more</strong></p>
+          <p>You can find the analysis behind many of my projects on <a href="https://github.com/luciamack" target="_blank" rel="noopener noreferrer">Github</a>
+          and all of the pieces I wrote for POLITICO in my <a href="https://www.politico.eu/" target="_blank" rel="noopener noreferrer">archive.</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <script>
+    document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
+      const track = carousel.querySelector('.portfolio-track');
+      const items = Array.from(carousel.querySelectorAll('.portfolio-item'));
+      const prev = carousel.querySelector('.carousel-arrow.prev');
+      const next = carousel.querySelector('.carousel-arrow.next');
+      let current = 0;
+
+      function visibleCards() {
+        if (window.innerWidth <= 767.98) return 1;
+        if (window.innerWidth <= 991.98) return 2;
+        return 3;
+      }
+
+      function update() {
+        const visible = visibleCards();
+        const max = Math.max(0, items.length - visible);
+        current = Math.min(Math.max(current, 0), max);
+
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+        const itemWidth = items[0].getBoundingClientRect().width;
+        const distance = current * (itemWidth + gap);
+
+        track.style.transform = 'translateX(-' + distance + 'px)';
+        prev.disabled = current === 0;
+        next.disabled = current >= max;
+      }
+
+      prev.addEventListener('click', function () {
+        current -= 1;
+        update();
+      });
+
+      next.addEventListener('click', function () {
+        current += 1;
+        update();
+      });
+
+      window.addEventListener('resize', update);
+      update();
+    });
+
+    // Play each project preview only while it is visible; muted playback allows autoplay.
+    const projectVideos = document.querySelectorAll('#projects .project-video');
+    if ('IntersectionObserver' in window) {
+      const videoObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          const video = entry.target;
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+            const playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+              playPromise.catch(function () { /* Browser autoplay restrictions may prevent playback. */ });
+            }
+          } else {
+            video.pause();
+          }
+        });
+      }, { threshold: [0, 0.25] });
+      projectVideos.forEach(function (video) { videoObserver.observe(video); });
+    } else {
+      projectVideos.forEach(function (video) {
+        video.addEventListener('loadedmetadata', function () { video.play().catch(function () {}); });
+      });
+    }
+  </script>
+</body>
+</html>
